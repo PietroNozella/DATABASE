@@ -1,0 +1,73 @@
+create table aluno (
+nome_completo varchar (25),
+curso varchar (30),
+semestre int(1),
+ra varchar(10),
+primary key (ra)
+);
+
+INSERT INTO aluno (nome_completo, curso, semestre, ra) VALUES ('Marcela Santana', 'SI', '2', 11231103030 );
+
+UPDATE aluno SET nome_completo= 'Macela Santana' WHERE nome_completo='Bianca Damacena';
+
+DELETE FROM aluno WHERE nome_completo= 'Bianca Damacena';
+
+select*from aluno;
+
+create table biblioteca (
+campus varchar (30),
+endereço varchar (30),
+telefone int (11),
+email varchar (25),
+responsável varchar (30),
+id_biblioteca int (3),
+primary key (id_biblioteca)
+);
+
+INSERT INTO biblioteca(campus, endereço, telefone, email, responsável, id_biblioteca) VALUES ('mogi', 'rua domingos roberto II', 11945521132, 'teste123@gmail.com', 
+'junior','123');
+
+UPDATE biblioteca SET responsável= 'junior' WHERE responsável='Biatriz';
+
+DELETE FROM biblioteca WHERE id_biblioteca= '123';
+
+select*from biblioteca;
+
+create table reserva (
+data_saida date,
+observação varchar (100),
+prev_entrega date,
+id_reserva int(5),
+primary key (id_reserva),
+FK_ra varchar (11),
+foreign key (FK_ra) references aluno (ra)
+);
+
+INSERT INTO reserva(data_saida, observação, prev_entrega, id_reserva) VALUES ('10/10/2023', 'Muiito boa a qualidade', '15/10/2023', '234');
+
+UPDATE reserva SET id_reserva= '234' WHERE id_reserva='435';
+
+DELETE FROM reserva WHERE data_saida= '10/10/2023';
+
+create table livro (
+id_livro varchar(3),
+titulo varchar(20),
+genero varchar(10),
+quantidade int(100),
+ISBN varchar(13),
+resumo varchar(100),
+autor varchar(30),
+pagina int (100),
+primary key (id_livro),
+FK_id_biblioteca int (3),
+foreign key (FK_id_biblioteca) references bilbioteca (id_biblioteca)
+);
+
+INSERT INTO livro(id_livro, titulo, genero, quantidade, ISBN, resumo, autor, pagina) VALUES ('123', 'A volta dos que não foram', 'suspense', '5', '978-0-7334-2609-4', '
+uma viagem fascinante que nunca exisitu', 'desconhecido' '5');
+
+UPDATE livro SET id_livro= '123' WHERE id_livro='321';
+
+DELETE FROM livro WHERE quantidade= '5';
+
+select*from livro;
