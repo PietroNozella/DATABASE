@@ -1,0 +1,61 @@
+CREATE TABLE aluno (
+    disciplinas_cursadas VARCHAR(2),
+    disciplinas_atuais VARCHAR(2),
+    curso_atual VARCHAR(30),
+    nome VARCHAR (50),
+    aniversario DATE,
+    cpf INT (11) PRIMARY KEY 
+);
+
+CREATE TABLE departamento (
+    nome VARCHAR (30) PRIMARY KEY,
+    funcionarios INT (3),
+    cursos INT (3),
+    fk_curso_nome VARCHAR (30)
+);
+
+CREATE TABLE curso (
+    nome VARCHAR (30) PRIMARY KEY,
+    area VARCHAR (10) ,
+    disciplinas_obrigatorias INT (2),
+    disciplinas_optativas INT (2),
+    fk_aluno_cpf INT (11)
+);
+
+CREATE TABLE disciplina (
+    nome VARCHAR (30) PRIMARY KEY,
+    alunos_matriculados INT (3),
+    pre_requisitos VARCHAR (50),
+    cursos INT (3),
+    fk_aluno_cpf INT (11)
+);
+
+CREATE TABLE tem (
+    fk_curso_nome VARCHAR (30),
+    fk_disciplina_nome VARCHAR (30)
+);
+ 
+ALTER TABLE departamento ADD CONSTRAINT FK_departamento_2
+    FOREIGN KEY (fk_curso_nome)
+    REFERENCES curso (nome)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE curso ADD CONSTRAINT FK_curso_2
+    FOREIGN KEY (fk_aluno_cpf)
+    REFERENCES aluno (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE disciplina ADD CONSTRAINT FK_disciplina_2
+    FOREIGN KEY (fk_aluno_cpf)
+    REFERENCES aluno (cpf)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE tem ADD CONSTRAINT FK_tem_1
+    FOREIGN KEY (fk_curso_nome)
+    REFERENCES curso (nome)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE tem ADD CONSTRAINT FK_tem_2
+    FOREIGN KEY (fk_disciplina_nome)
+    REFERENCES disciplina (nome)
+    ON DELETE RESTRICT;
