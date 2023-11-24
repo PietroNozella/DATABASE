@@ -1,0 +1,168 @@
+create database cadastro;
+use cadastro;
+
+create table setor(
+id_setor int (3),
+descricao varchar (100),
+primary key (id_setor)
+);
+
+insert into setor (id_setor, descricao) values ('123','este é o primeiro setor');
+insert into setor (id_setor, descricao) values ('122','este é o segundo setor');
+insert into setor (id_setor, descricao) values ('121','este é o terceiro setor');
+insert into setor (id_setor, descricao) values ('124','este é o quarto setor');
+insert into setor (id_setor, descricao) values ('129','este é o quinto setor');
+insert into setor (id_setor, descricao) values ('127','este é o sexto setor');
+insert into setor (id_setor, descricao) values ('125','este é o sétimo setor');
+insert into setor (id_setor, descricao) values ('120','este é o oitavo setor');
+insert into setor (id_setor, descricao) values ('128','este é o nono setor');
+insert into setor (id_setor, descricao) values ('111','este é o décimo setor');
+
+Select lower(descricao) from setor;
+select upper(descricao) from setor; 
+select*from setor order by id_setor asc;
+select*from setor order by id_setor desc;
+select distinct descricao from setor;
+
+
+create table funcionario(
+id_funcionario int(3),
+funcao varchar (30),
+nome varchar (45),
+genero varchar (45),
+data_nasc date,
+FK_id_setor int (3),
+primary key (id_funcionario),
+foreign key (FK_id_setor) references setor (id_setor)
+);
+
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('122','limpar', 'masculino', '13/06/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('143','costurar', 'masculino', '13/06/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('154','limpar', 'femina', '13/05/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('166','varrer', 'masculino', '22/03/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('666','cobrar', 'feminino', '22/08/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('354','medir', 'não banarie', '22/02/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('687','visualizar', 'masculino', '22/02/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('623','cortar', 'feminino', '13/05/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('980','costurar', 'feminino', '13/07/2000');
+insert into funcionario (id_funcionario, funcao, nome, genero, data_nasc) values ('321','costurar', 'feminino', '13/04/2000');
+
+Select lower(nome) from setor;
+select upper(nome) from setor; 
+select*from funcionario order by id_funcionario asc;
+select*from funcionario order by id_funcionario desc;
+select distinct nome from funcionario;
+
+
+
+create table pagamento (
+id_pagamento int (3),
+valor float (6),
+numero_conta int (11),
+dia date,
+banco varchar (25),
+agencia int (3),
+FK_id_funcionario int (3),
+primary key (id_pagamento),
+foreign key (FK_id_funcionario) references funcionario (id_funcionario)
+);
+
+Select lower(banco) from pagamento;
+select upper(banco) from pagamento; 
+select*from pagamento order by id_pagamento asc;
+select*from pagamento order by id_pagamento desc;
+select distinct banco from pagamento;
+
+
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('123', '120,000', '12345659901', '12/12/2023', 'caixa', '301');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('125', '123,000', '12345278901', '12/12/2023', 'caixa', '301');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('154', '124,000', '12345675901', '12/12/2023', 'caixa', '321');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('157', '120,000', '12345648901', '12/12/2023', 'caixa', '301');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('165', '10,000', '12345678901', '12/12/2023', 'caixa', '321');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('132', '12,000', '12345678901', '12/12/2023', 'caixa', '301');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('150', '100,000', '12346678901', '12/12/2023', 'caixa', '321');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('192', '111,000', '12345618901', '12/12/2023', 'caixa', '301');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('100', '600,000', '12345670901', '12/12/2023', 'caixa', '321');
+insert into pagamento (id_pagamento, valor, numero_conta, dia, banco, agencia) values ('101', '10,000', '12345378901', '12/12/2023', 'caixa', '321');
+
+
+create table roupa (
+id_roupa int (3), 
+descricao varchar (100),
+preco float (6),
+primary key (id_roupa)
+);
+-- é muito legal fazer banco de dados 
+insert into roupa(id_roupa, descricao, preco) values ('100', 'couro de camelo', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('101', 'tecido fino', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('132', 'couro', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('145', 'tecido', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('176', 'tecido', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('141', 'linho', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('122', 'algodão', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('111', 'couro de jacaré', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('104', 'tecido grosso', '100,000');
+insert into roupa(id_roupa, descricao, preco) values ('149', 'lã', '100,000');
+
+Select lower(preco) from roupa;
+select upper(preco) from roupa; 
+select*from roupa order by id_roupa asc;
+select*from roupa order by id_roupa desc;
+select distinct id_roupa from roupa;
+
+
+create table costureira (
+id_costureira int (3), 
+tipo varchar (25),
+tipo_agulha varchar (25),
+tipo_linha varchar (25),
+primary key (id_costureira)
+);
+
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('100', 'boa', 'fina', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('132', 'boa', 'grossa', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('101', 'boa', 'fina', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('134', 'boa', 'grossa', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('176', 'boa', 'fina', 'grossa');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('198', 'boa', 'fina', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('192', 'boa', 'grossa', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('190', 'boa', 'fina', 'fina');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('157', 'boa', 'grossa', 'grossa');
+insert into costureira(id_costureira, tipo, tipo_agulha, tipo_linha) values ('195', 'boa', 'fina', 'grossa');
+
+-- eu amo banco de dados
+
+Select lower(tipo) from costureira;
+select upper(tipo) from costureira; 
+select*from costureira order by id_costureira asc;
+select*from costureira order by id_costureira desc;
+select distinct id_setor from costureira;
+
+
+
+create table maquinario (
+id_maquina int (3),
+tipo varchar (25),
+statz varchar (12),
+FK_id_costureira int (3),
+dia date,
+primary key (id_maquina),
+foreign key (FK_id_costureira) references costureira (id_costureira)
+);
+
+insert into maquinario (id_maquina, tipo, statz, dia) values ('100', 'costura', 'ativa','11/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('122', 'costura', 'ativa','11/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('145', 'costura', 'inativa','10/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('167', 'costura', 'ativa','11/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('103', 'costura', 'ativa','11/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('101', 'costura', 'inativa','10/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('104', 'costura', 'ativa','11/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('143', 'costura', 'inativa','10/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('156', 'costura', 'ativa','11/03/2023');
+insert into maquinario (id_maquina, tipo, statz, dia) values ('187', 'costura', 'ativa','11/03/2023');
+
+Select lower(tipo) from maquinario;
+select upper(tipo) from maquinario; 
+select*from maquinario order by id_maquina asc;
+select*from maquinario order by id_maquina desc;
+select distinct id_maquina from maquina;
